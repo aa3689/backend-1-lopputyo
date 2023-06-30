@@ -1,0 +1,136 @@
+*** HAUT ***
+
+// Opiskelijan haku id:llä
+{
+  student (id: "62504387c98dda4dbfb67632") {
+    studentcode
+    name
+    email
+    studypoints
+  }
+}
+
+// Opiskelijan haku nimellä
+{
+  studentByName (name: "Olli Opiskelija") {
+    id
+    studentcode
+    name
+    email
+    studypoints
+  }
+}
+
+// Kaikkien opiskelijoiden haku
+{
+  students {
+  	name
+    email
+    studypoints
+  }
+}
+
+// Opiskelijan ja hänen arvosanojen haku / arvosanojen haku opiskelijan id:llä
+// (ovat käytännössä sama haku)
+{
+  student(id: "62503b87448b126f27f178e1") {
+    name
+    grades {
+      coursecode
+      grade
+    }
+  }
+}
+{
+  grade(id: "62503b87448b126f27f178e1") {
+    coursecode
+    grade
+    student {
+      name
+    }
+  }
+}
+
+// Kaikki kurssit/arvosanat ja arvosanalle kuuluvan oppilaan tiedot
+{
+  grades {
+    coursecode
+    grade
+    student {
+      studentcode
+      name
+      studypoints
+    }
+  }
+}
+
+// Kaikki oppilaat ja heidän kurssinsa
+{
+  students {
+    name
+    grades {
+      coursecode
+    }
+  }
+}
+
+// Oppilaat, joilla on alle 20 opintopisteitä
+{
+  studentsByPoints(studypoints: 20) {
+    name
+    studypoints
+  }
+}
+
+// Oppilaat, joilla on tietty kurssi
+{
+  studentsByCoursecode(coursecode: "HTKA0050-3002") {
+    coursecode
+    grade
+    student {
+      name
+    }
+  }
+}
+
+*** MUTAATIOT ***
+
+// Opiskelijan lisäys
+mutation {
+  addStudent (studentcode: "d1234", name: "Olli Opiskelija", email: "aa1234@jamk.fi", studypoints: 100) {
+    id
+    studentcode
+    name
+    email
+    studypoints
+  }
+}
+
+// Opiskelijan ja hänen kaikkien kurssien/arvosanojen poisto
+mutation {
+  deleteStudent(id: "6251b48ff4547ab2405fe082") {
+    name
+  }
+  deleteGrade(studentId: "6251b48ff4547ab2405fe082") {
+    coursecode
+  }
+}
+
+// Opiskelijan muokkaus
+mutation {
+  updateStudent(id: "6250439cc98dda4dbfb67634", studypoints: 15) {
+    id
+    studentcode
+    name
+    email
+    studypoints
+  }
+}
+
+// Kurssin/arvosanan lisäys
+mutation {
+  addGrade(studentId: "6251b91d350a8d82f4350f8c", coursecode: "HTKA0140-3001", grade: 5) {
+    coursecode
+    grade
+  }
+}
