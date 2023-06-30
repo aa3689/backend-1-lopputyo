@@ -1,2 +1,1 @@
-# backend-1-lopputyo
-Backend 1 -kurssin lopputyö
+Toisen vuoden 'Backend-sovelluskehitys 1 - HTKA0140' -opintojaksolle tekemäni lopputyö. Lopputyössä oli tarkoitus tutustua GraphQL:n kursilla käytetyn REST API:n vastapainoksi. Kurssi suoritettu 04/2022.
